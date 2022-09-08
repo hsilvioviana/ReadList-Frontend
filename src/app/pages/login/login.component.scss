@@ -1,0 +1,23 @@
+.form-container {
+    padding: 30px;
+    border: 1px solid black;
+    height: 400px;
+    width: 400px;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+}
+
+.redirect-text
+{
+    color: blue;
+    text-decoration: underline blue;
+
+    &:hover {
+        cursor: pointer;
+        text-decoration: underline blue;
+        opacity:0.65;
+    }
+}
