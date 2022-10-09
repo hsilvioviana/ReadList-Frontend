@@ -8,6 +8,11 @@ export class RouterPaths {
 
   constructor(private router: Router) { }
 
+  currentRoute()
+  {
+    return this.router.url
+  }
+
   goToLogin()
   {
     this.router.navigate(['/login']);
@@ -22,4 +27,20 @@ export class RouterPaths {
   {
     this.router.navigate(['/']);
   }
+
+  goToStatistics()
+  {
+    this.router.navigate(['/statistics']);
+  }
+
+  goToConfigs()
+  {
+    this.router.navigate(['/configs']);
+  }
+
+  goToLogout()
+  {
+    this.router.navigate(['/login']);
+  }
+
 }
