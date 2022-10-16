@@ -1,0 +1,31 @@
+.year-container
+{
+    margin-bottom: 20px;
+    border: 1px solid black;
+}
+
+.table-container-header
+{
+    padding: 0 15px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.pointer-hover {
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+table 
+{
+    width: 100%;
+}
+
+.actionsColumn {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
