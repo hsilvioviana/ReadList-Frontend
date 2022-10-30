@@ -37,8 +37,9 @@ export class AppComponent {
 
   logout()
   {
-    localStorage.removeItem('token')
     localStorage.removeItem('username')
+    localStorage.removeItem('email')
+    localStorage.removeItem('token')
     this.router.goToLogout()
   }
 }
