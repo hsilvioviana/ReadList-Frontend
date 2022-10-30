@@ -1,1 +1,126 @@
-<p>statistics works!</p>
+<div class="page-container">
+
+    <form class="form" [formGroup]="statisticsForm">
+        <mat-form-field appearance="legacy">
+            <mat-label>Data Inicial</mat-label>
+            <input matInput formControlName="startDate" (keyup)="restrictNumbersOnly($event, 'startDate')">
+        </mat-form-field>
+
+        <mat-form-field appearance="legacy">
+            <mat-label>Data Final</mat-label>
+            <input matInput formControlName="endDate" (keyup)="restrictNumbersOnly($event, 'endDate')">
+        </mat-form-field>
+
+        <button mat-flat-button color="primary" [disabled]="!this.statisticsForm.valid" (click)="applyFilters()">Aplicar Filtros</button>
+    </form>
+    
+    <div *ngFor="let statisticsHeader of statisticsHeaders; index as i" class="statistics-container">
+        <div class="table-container-header">
+            <h3>{{ formatHeader(statisticsHeader[0]) }} </h3>
+            <h3>{{ statisticsHeader[1] }} </h3>
+            <h3 class="pointer-hover" (click)="toggleStatisticsTable(statisticsHeader[0])"><mat-icon>{{ openTable == statisticsHeader[0] ? "keyboard_arrow_up" : "keyboard_arrow_down" }}</mat-icon></h3>
+        </div>
+        
+        <div *ngIf="openTable == statisticsHeader[0] && themesDividedByKeys.includes(statisticsHeader[0])">
+            <div *ngFor="let book of booksByKey; index as i" class="statistics-container">
+                <div class="table-container-header">
+                    <h3>{{ i + 1 }}° {{ book.key }} </h3>
+                    <h3>Quantidade de livros: {{ book.count }} </h3>
+                    <h3 class="pointer-hover" (click)="toggleSubGroupTable(i)"><mat-icon>{{ openSubGroupTables.includes(i) ? "keyboard_arrow_up" : "keyboard_arrow_down" }}</mat-icon></h3>
+                </div>
+                
+                <table mat-table [dataSource]="booksByKey[i].books" class="mat-elevation-z8" *ngIf="openSubGroupTables.includes(i)">
+                    <ng-container matColumnDef="title">
+                        <th mat-header-cell *matHeaderCellDef> Título </th>
+                        <td mat-cell *matCellDef="let book"> {{book.title}} </td>
+                    </ng-container>
+            
+                    <ng-container matColumnDef="author">
+                        <th mat-header-cell *matHeaderCellDef> Autor </th>
+                        <td mat-cell *matCellDef="let book"> {{book.author}} </td>
+                    </ng-container>
+            
+                    <ng-container matColumnDef="releaseYear">
+                        <th mat-header-cell *matHeaderCellDef> Lançamento </th>
+                        <td mat-cell *matCellDef="let book"> {{book.releaseYear}} </td>
+                    </ng-container>
+            
+                    <ng-container matColumnDef="isFiction">
+                        <th mat-header-cell *matHeaderCellDef> Ficção </th>
+                        <td mat-cell *matCellDef="let book"><mat-icon class="icon">{{ book.isFiction ? 'done' : 'clear' }}</mat-icon></td>
+                    </ng-container>
+            
+                    <ng-container matColumnDef="genres">
+                        <th mat-header-cell *matHeaderCellDef> Gêneros </th>
+                        <td mat-cell *matCellDef="let book"> {{book.genres.join(" / ")}} </td>
+                    </ng-container>
+            
+                    <ng-container matColumnDef="numberOfPages">
+                        <th mat-header-cell *matHeaderCellDef> Páginas </th>
+                        <td mat-cell *matCellDef="let book"> {{book.numberOfPages}} </td>
+                    </ng-container>
+            
+                    <ng-container matColumnDef="countryOfOrigin">
+                        <th mat-header-cell *matHeaderCellDef> Origem </th>
+                        <td mat-cell *matCellDef="let book"> {{book.countryOfOrigin}} </td>
+                    </ng-container>
+            
+                    <ng-container matColumnDef="language">
+                        <th mat-header-cell *matHeaderCellDef> Idioma </th>
+                        <td mat-cell *matCellDef="let book"> {{book.language}} </td>
+                    </ng-container>
+                    
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+            </div>
+        </div>
+
+        <div *ngIf="openTable == statisticsHeader[0] && themesWithSimpleList.includes(statisticsHeader[0])">
+            <table mat-table [dataSource]="bookList" class="mat-elevation-z8">
+                <ng-container matColumnDef="title">
+                    <th mat-header-cell *matHeaderCellDef> Título </th>
+                    <td mat-cell *matCellDef="let book"> {{book.title}} </td>
+                </ng-container>
+        
+                <ng-container matColumnDef="author">
+                    <th mat-header-cell *matHeaderCellDef> Autor </th>
+                    <td mat-cell *matCellDef="let book"> {{book.author}} </td>
+                </ng-container>
+        
+                <ng-container matColumnDef="releaseYear">
+                    <th mat-header-cell *matHeaderCellDef> Lançamento </th>
+                    <td mat-cell *matCellDef="let book"> {{book.releaseYear}} </td>
+                </ng-container>
+        
+                <ng-container matColumnDef="isFiction">
+                    <th mat-header-cell *matHeaderCellDef> Ficção </th>
+                    <td mat-cell *matCellDef="let book"><mat-icon class="icon">{{ book.isFiction ? 'done' : 'clear' }}</mat-icon></td>
+                </ng-container>
+        
+                <ng-container matColumnDef="genres">
+                    <th mat-header-cell *matHeaderCellDef> Gêneros </th>
+                    <td mat-cell *matCellDef="let book"> {{book.genres.join(" / ")}} </td>
+                </ng-container>
+        
+                <ng-container matColumnDef="numberOfPages">
+                    <th mat-header-cell *matHeaderCellDef> Páginas </th>
+                    <td mat-cell *matCellDef="let book"> {{book.numberOfPages}} </td>
+                </ng-container>
+        
+                <ng-container matColumnDef="countryOfOrigin">
+                    <th mat-header-cell *matHeaderCellDef> Origem </th>
+                    <td mat-cell *matCellDef="let book"> {{book.countryOfOrigin}} </td>
+                </ng-container>
+        
+                <ng-container matColumnDef="language">
+                    <th mat-header-cell *matHeaderCellDef> Idioma </th>
+                    <td mat-cell *matCellDef="let book"> {{book.language}} </td>
+                </ng-container>
+                
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+        </div>
+    </div>
+</div>
