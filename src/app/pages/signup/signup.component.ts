@@ -32,8 +32,9 @@ export class SignupComponent {
 
     this.service.signup(payload)
       .subscribe(data => {
-        localStorage.setItem('token', data.token)
         localStorage.setItem('username', data.username)
+        localStorage.setItem('email', data.email)
+        localStorage.setItem('token', data.token)
         this.router.goToHome()
       },
       error => window.alert(error?.error?.message))

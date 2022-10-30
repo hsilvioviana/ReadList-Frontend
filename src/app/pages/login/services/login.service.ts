@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
 import { ILoginForm } from '../interfaces/ILoginForm';
 import { ILoginResponse } from '../interfaces/ILoginResponse';
 
@@ -10,7 +11,9 @@ export class LoginService {
 
   constructor(private http: HttpClient) { }
 
+  baseUrl = environment.baseUrl
+
   login(body: ILoginForm) {
-    return this.http.post<ILoginResponse>("https://localhost:7220/api/users/login", body)
+    return this.http.post<ILoginResponse>(`${this.baseUrl}/users/login`, body)
   }
 }
