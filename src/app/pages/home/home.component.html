@@ -1,60 +1,58 @@
-<div>
-    <button mat-raised-button (click)="createBook()">Adicionar Livro</button>
+<div class="add-button-container">
+    <button mat-raised-button class="btn btn-primary" (click)="createBook()">Adicionar Livro</button>
 </div>
-
-<br/>
 
 <div *ngFor="let bookDividedByYear of booksDividedByYear; index as i" class="year-container">
     <div class="table-container-header">
-        <h3>{{ bookDividedByYear.key }} </h3>
-        <h3>{{ bookDividedByYear.count }} {{ bookDividedByYear.count > 1 ? 'Livros' : 'Livro' }}</h3>
+        <h3 style="width: 320px;">{{ bookDividedByYear.key }} </h3>
+        <h3 style="width: 320px;">{{ bookDividedByYear.count }} {{ bookDividedByYear.count > 1 ? 'Livros' : 'Livro' }}</h3>
         <h3 class="pointer-hover" (click)="toggleYearTable(i)"><mat-icon>{{ openYearTables.includes(i) ? "keyboard_arrow_up" : "keyboard_arrow_down" }}</mat-icon></h3>
     </div>
-    
-    <table mat-table [dataSource]="bookDividedByYear.books" class="mat-elevation-z8" *ngIf="openYearTables.includes(i)">
+
+    <table mat-table [dataSource]="bookDividedByYear.books" class="mat-elevation-z8 table-container" *ngIf="openYearTables.includes(i)">
 
         <ng-container matColumnDef="title">
-            <th mat-header-cell *matHeaderCellDef> Título </th>
+            <th mat-header-cell *matHeaderCellDef class="width-15"> Título </th>
             <td mat-cell *matCellDef="let book"> {{book.title}} </td>
         </ng-container>
 
         <ng-container matColumnDef="author">
-            <th mat-header-cell *matHeaderCellDef> Autor </th>
+            <th mat-header-cell *matHeaderCellDef class="width-15"> Autor </th>
             <td mat-cell *matCellDef="let book"> {{book.author}} </td>
         </ng-container>
 
         <ng-container matColumnDef="releaseYear">
-            <th mat-header-cell *matHeaderCellDef> Lançamento </th>
+            <th mat-header-cell *matHeaderCellDef class="width-10"> Lançamento </th>
             <td mat-cell *matCellDef="let book"> {{book.releaseYear}} </td>
         </ng-container>
 
         <ng-container matColumnDef="isFiction">
-            <th mat-header-cell *matHeaderCellDef> Ficção </th>
+            <th mat-header-cell *matHeaderCellDef class="width-5"> Ficção </th>
             <td mat-cell *matCellDef="let book"><mat-icon class="icon">{{ book.isFiction ? 'done' : 'clear' }}</mat-icon></td>
         </ng-container>
 
         <ng-container matColumnDef="genres">
-            <th mat-header-cell *matHeaderCellDef> Gêneros </th>
+            <th mat-header-cell *matHeaderCellDef class="width-15"> Gêneros </th>
             <td mat-cell *matCellDef="let book"> {{book.genres.join(" / ")}} </td>
         </ng-container>
 
         <ng-container matColumnDef="numberOfPages">
-            <th mat-header-cell *matHeaderCellDef> Páginas </th>
+            <th mat-header-cell *matHeaderCellDef class="width-5"> Páginas </th>
             <td mat-cell *matCellDef="let book"> {{book.numberOfPages}} </td>
         </ng-container>
 
         <ng-container matColumnDef="countryOfOrigin">
-            <th mat-header-cell *matHeaderCellDef> Origem </th>
+            <th mat-header-cell *matHeaderCellDef class="width-10"> Origem </th>
             <td mat-cell *matCellDef="let book"> {{book.countryOfOrigin}} </td>
         </ng-container>
 
         <ng-container matColumnDef="language">
-            <th mat-header-cell *matHeaderCellDef> Idioma </th>
+            <th mat-header-cell *matHeaderCellDef class="width-10"> Idioma </th>
             <td mat-cell *matCellDef="let book"> {{book.language}} </td>
         </ng-container>
 
         <ng-container matColumnDef="actions">
-            <th mat-header-cell *matHeaderCellDef> Ações </th>
+            <th mat-header-cell *matHeaderCellDef class="width-10"> Ações </th>
             <div *matCellDef="let book" class="actionsColumn">
                 <mat-icon class="icon pointer-hover" (click)="editBook(book)">edit</mat-icon>
                 <mat-icon class="icon pointer-hover" (click)="deleteBook(book.id)">delete</mat-icon>

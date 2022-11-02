@@ -1,14 +1,30 @@
+.add-button-container {
+    margin: 6px 0px 12px;
+}
+
 .year-container
 {
-    margin-bottom: 20px;
     border: 1px solid black;
+    margin-bottom: 20px;
 }
 
 .table-container-header
 {
-    padding: 0 15px;
+    padding: 5px 15px;
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    background-color: #2a8c4a;
+    color: white;
+
+    h3 {
+        display: flex;
+        align-items: center;
+    }
+}
+
+.table-container {
+    border-top: 1px solid black;
 }
 
 .pointer-hover {
@@ -28,4 +44,22 @@ table
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.mat-row {
+    border-bottom-width: 1px !important;
+    border-bottom-color: rgba(0,0,0,.12) !important;
+    border-bottom-style: solid !important;
+}
+
+.width-15 {
+    width: 15% !important;
+}
+
+.width-10 {
+    width: 10% !important;
+}
+
+.width-5 {
+    width: 5% !important;
 }

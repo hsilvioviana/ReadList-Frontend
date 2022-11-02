@@ -1,11 +1,16 @@
 .header {
-    height: 50px;
-    background-color: #008000;
+    height: 60px;
+    background-color: #2a8c4a;
     padding: 9px;
-    margin: -10px -10px 0px -10px;
     width: 100%;
     color: #FFFFFF;
+}
+
+.icon-container {
     display: flex;
     align-items: center;
-    justify-content: center;
+
+    img {
+        margin-right: 8px;
+    }
 }

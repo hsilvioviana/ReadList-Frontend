@@ -1,3 +1,8 @@
+.dialog-container {
+    width: 400px;
+    padding: 10px 20px;
+}
+
 .form-container {
     padding: 30px;
     border: 1px solid black;
@@ -8,4 +13,12 @@
 .form {
     display: flex;
     flex-direction: column;
+}
+
+.modal-button {
+    margin-left: 5px;
+}
+
+.form-create-genre {
+ margin: 0px 5px 0px 15px;
 }
