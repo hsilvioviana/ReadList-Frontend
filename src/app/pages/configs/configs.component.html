@@ -1,39 +1,41 @@
-<div class="form-container">
-    <form class="form" [formGroup]="configsForm">
+<div class="page-container">
+    <div class="form-container">
+        <form class="form" [formGroup]="configsForm">
 
-        <h3>Atualizar Dados</h3>
+            <h3>Atualizar Dados</h3>
 
-        <mat-form-field appearance="legacy">
-            <mat-label>Usuário</mat-label>
-            <input matInput formControlName="username">
-            <mat-error *ngIf="helpers.isInvalid(configsForm, 'username', 'required')">{{ msg.required }}</mat-error>
-            <mat-error *ngIf="helpers.isInvalid(configsForm, 'username', 'minlength')">{{ msg.minLength.replace("(XX)", "3")}}</mat-error>
-            <mat-error *ngIf="helpers.isInvalid(configsForm, 'username', 'maxlength')">{{ msg.maxLength.replace("(XX)", "30") }}</mat-error>
-        </mat-form-field>
+            <mat-form-field appearance="legacy">
+                <mat-label>Usuário</mat-label>
+                <input matInput formControlName="username">
+                <mat-error *ngIf="helpers.isInvalid(configsForm, 'username', 'required')">{{ msg.required }}</mat-error>
+                <mat-error *ngIf="helpers.isInvalid(configsForm, 'username', 'minlength')">{{ msg.minLength.replace("(XX)", "3")}}</mat-error>
+                <mat-error *ngIf="helpers.isInvalid(configsForm, 'username', 'maxlength')">{{ msg.maxLength.replace("(XX)", "30") }}</mat-error>
+            </mat-form-field>
 
-        <mat-form-field appearance="legacy">
-            <mat-label>Email</mat-label>
-            <input matInput formControlName="email">
-            <mat-error *ngIf="helpers.isInvalid(configsForm, 'email', 'required')">{{ msg.required }}</mat-error>
-            <mat-error *ngIf="helpers.isInvalid(configsForm, 'email', 'email')">{{ msg.email }}</mat-error>
-        </mat-form-field>
+            <mat-form-field appearance="legacy">
+                <mat-label>Email</mat-label>
+                <input matInput formControlName="email">
+                <mat-error *ngIf="helpers.isInvalid(configsForm, 'email', 'required')">{{ msg.required }}</mat-error>
+                <mat-error *ngIf="helpers.isInvalid(configsForm, 'email', 'email')">{{ msg.email }}</mat-error>
+            </mat-form-field>
 
-        <h3>Atualizar Senha</h3>
+            <h3>Atualizar Senha</h3>
 
-        <mat-form-field appearance="legacy">
-            <mat-label>Senha</mat-label>
-            <input matInput type="password" formControlName="password">
-            <mat-error *ngIf="helpers.isInvalid(configsForm, 'password', 'minlength')">{{ msg.minLength.replace("(XX)", "6") }}</mat-error>
-            <mat-error *ngIf="helpers.isInvalid(configsForm, 'password', 'maxlength')">{{ msg.maxLength.replace("(XX)", "30") }}</mat-error>
-        </mat-form-field>
+            <mat-form-field appearance="legacy">
+                <mat-label>Senha</mat-label>
+                <input matInput type="password" formControlName="password">
+                <mat-error *ngIf="helpers.isInvalid(configsForm, 'password', 'minlength')">{{ msg.minLength.replace("(XX)", "6") }}</mat-error>
+                <mat-error *ngIf="helpers.isInvalid(configsForm, 'password', 'maxlength')">{{ msg.maxLength.replace("(XX)", "30") }}</mat-error>
+            </mat-form-field>
 
-        <mat-form-field appearance="legacy">
-            <mat-label>Nova Senha</mat-label>
-            <input matInput type="password" formControlName="newPassword">
-            <mat-error *ngIf="helpers.isInvalid(configsForm, 'newPassword', 'minlength')">{{ msg.minLength.replace("(XX)", "6") }}</mat-error>
-            <mat-error *ngIf="helpers.isInvalid(configsForm, 'newPassword', 'maxlength')">{{ msg.maxLength.replace("(XX)", "30") }}</mat-error>
-        </mat-form-field>
+            <mat-form-field appearance="legacy">
+                <mat-label>Nova Senha</mat-label>
+                <input matInput type="password" formControlName="newPassword">
+                <mat-error *ngIf="helpers.isInvalid(configsForm, 'newPassword', 'minlength')">{{ msg.minLength.replace("(XX)", "6") }}</mat-error>
+                <mat-error *ngIf="helpers.isInvalid(configsForm, 'newPassword', 'maxlength')">{{ msg.maxLength.replace("(XX)", "30") }}</mat-error>
+            </mat-form-field>
 
-        <button mat-flat-button color="primary" [disabled]="!this.configsForm.valid" (click)="updateUser()">Atualizar</button>
-    </form>
+            <button mat-flat-button color="primary" [disabled]="!this.configsForm.valid" (click)="updateUser()">Atualizar</button>
+        </form>
+    </div>
 </div>

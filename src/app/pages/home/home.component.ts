@@ -66,11 +66,14 @@ export class HomeComponent implements OnInit {
   }
 
   deleteBook(id: string): void {
-    this.homeService.deleteBook(id)
-    .subscribe(() => {
-      this.getBooksDividedByYear()
-    },
-    error => window.alert(error?.error?.message))
+
+    if (window.confirm("Tem certeza que quer deletar esse livro?")) {
+      this.homeService.deleteBook(id)
+      .subscribe(() => {
+        this.getBooksDividedByYear()
+      },
+      error => window.alert(error?.error?.message))
+    }
   }
 
   getGenreList()

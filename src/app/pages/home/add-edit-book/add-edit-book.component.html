@@ -1,86 +1,88 @@
-<h1 mat-dialog-title *ngIf="data.dialogType == 'add'">Criar Livro</h1>
-<h1 mat-dialog-title *ngIf="data.dialogType == 'edit'">Editar Livro</h1>
-<div mat-dialog-content>
-    <form class="form" [formGroup]="bookForm">
-        <mat-form-field appearance="legacy">
-            <mat-label>Título</mat-label>
-            <input matInput formControlName="title">
-            <mat-error *ngIf="helpers.isInvalid(bookForm, 'title', 'required')">{{ msg.required }}</mat-error>
-            <mat-error *ngIf="helpers.isInvalid(bookForm, 'title', 'minlength')">{{ msg.minLength.replace("(XX)", "3")}}</mat-error>
-            <mat-error *ngIf="helpers.isInvalid(bookForm, 'title', 'maxlength')">{{ msg.maxLength.replace("(XX)", "30") }}</mat-error>
-        </mat-form-field>
+<div class="dialog-container">
+    <h1 mat-dialog-title *ngIf="data.dialogType == 'add'">Criar Livro</h1>
+    <h1 mat-dialog-title *ngIf="data.dialogType == 'edit'">Editar Livro</h1>
+    <div mat-dialog-content>
+        <form class="form" [formGroup]="bookForm">
+            <mat-form-field appearance="legacy">
+                <mat-label>Título</mat-label>
+                <input matInput formControlName="title">
+                <mat-error *ngIf="helpers.isInvalid(bookForm, 'title', 'required')">{{ msg.required }}</mat-error>
+                <mat-error *ngIf="helpers.isInvalid(bookForm, 'title', 'minlength')">{{ msg.minLength.replace("(XX)", "3")}}</mat-error>
+                <mat-error *ngIf="helpers.isInvalid(bookForm, 'title', 'maxlength')">{{ msg.maxLength.replace("(XX)", "30") }}</mat-error>
+            </mat-form-field>
 
-        <mat-form-field appearance="legacy">
-            <mat-label>Autor</mat-label>
-            <input matInput formControlName="author">
-            <mat-error *ngIf="helpers.isInvalid(bookForm, 'author', 'required')">{{ msg.required }}</mat-error>
-            <mat-error *ngIf="helpers.isInvalid(bookForm, 'author', 'minlength')">{{ msg.minLength.replace("(XX)", "3")}}</mat-error>
-            <mat-error *ngIf="helpers.isInvalid(bookForm, 'author', 'maxlength')">{{ msg.maxLength.replace("(XX)", "30") }}</mat-error>
-        </mat-form-field>
-        <mat-form-field appearance="legacy">
-            <mat-label>Ano de Lançamento</mat-label>
-            <input matInput formControlName="releaseYear" (keyup)="restrictNumbersOnly($event, 'releaseYear')">
-            <mat-error *ngIf="helpers.isInvalid(bookForm, 'releaseYear', 'required')">{{ msg.required }}</mat-error>
-            <mat-error *ngIf="helpers.isInvalid(bookForm, 'releaseYear', 'min')">{{ msg.min.replace("(XX)", "1")}}</mat-error>
-            <mat-error *ngIf="helpers.isInvalid(bookForm, 'releaseYear', 'max')">{{ msg.max.replace("(XX)", "10000") }}</mat-error>
-        </mat-form-field>
+            <mat-form-field appearance="legacy">
+                <mat-label>Autor</mat-label>
+                <input matInput formControlName="author">
+                <mat-error *ngIf="helpers.isInvalid(bookForm, 'author', 'required')">{{ msg.required }}</mat-error>
+                <mat-error *ngIf="helpers.isInvalid(bookForm, 'author', 'minlength')">{{ msg.minLength.replace("(XX)", "3")}}</mat-error>
+                <mat-error *ngIf="helpers.isInvalid(bookForm, 'author', 'maxlength')">{{ msg.maxLength.replace("(XX)", "30") }}</mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="legacy">
+                <mat-label>Ano de Lançamento</mat-label>
+                <input matInput formControlName="releaseYear" (keyup)="restrictNumbersOnly($event, 'releaseYear')">
+                <mat-error *ngIf="helpers.isInvalid(bookForm, 'releaseYear', 'required')">{{ msg.required }}</mat-error>
+                <mat-error *ngIf="helpers.isInvalid(bookForm, 'releaseYear', 'min')">{{ msg.min.replace("(XX)", "1")}}</mat-error>
+                <mat-error *ngIf="helpers.isInvalid(bookForm, 'releaseYear', 'max')">{{ msg.max.replace("(XX)", "10000") }}</mat-error>
+            </mat-form-field>
 
-        <mat-form-field appearance="legacy">
-            <mat-label>Ano de Leitura</mat-label>
-            <input matInput formControlName="readingYear" (keyup)="restrictNumbersOnly($event, 'readingYear')">
-            <mat-error *ngIf="helpers.isInvalid(bookForm, 'readingYear', 'required')">{{ msg.required }}</mat-error>
-            <mat-error *ngIf="helpers.isInvalid(bookForm, 'readingYear', 'min')">{{ msg.min.replace("(XX)", "1")}}</mat-error>
-            <mat-error *ngIf="helpers.isInvalid(bookForm, 'readingYear', 'max')">{{ msg.max.replace("(XX)", "10000") }}</mat-error>
-        </mat-form-field>
+            <mat-form-field appearance="legacy">
+                <mat-label>Ano de Leitura</mat-label>
+                <input matInput formControlName="readingYear" (keyup)="restrictNumbersOnly($event, 'readingYear')">
+                <mat-error *ngIf="helpers.isInvalid(bookForm, 'readingYear', 'required')">{{ msg.required }}</mat-error>
+                <mat-error *ngIf="helpers.isInvalid(bookForm, 'readingYear', 'min')">{{ msg.min.replace("(XX)", "1")}}</mat-error>
+                <mat-error *ngIf="helpers.isInvalid(bookForm, 'readingYear', 'max')">{{ msg.max.replace("(XX)", "10000") }}</mat-error>
+            </mat-form-field>
 
-        <section>
-            <mat-checkbox formControlName="isFiction" color="primary">Ficção</mat-checkbox>
-        </section>
+            <section style="margin: 5px 0;">
+                <mat-checkbox formControlName="isFiction" color="primary">Ficção</mat-checkbox>
+            </section>
 
-        <mat-form-field appearance="legacy">
-            <mat-label>Gêneros</mat-label>
-            <mat-select formControlName="genres" multiple>
-                <div mat-dialog-actions>
-                    <mat-form-field appearance="legacy">
-                        <mat-label>Novo Gênero</mat-label>
-                        <input matInput [formControl]="newGenre"/>
-                    </mat-form-field>
-                    <button mat-button (click)="createGenre()">Criar</button>
-                </div>
-                <mat-option *ngFor="let genre of genreList" [value]="genre" color="primary">
-                    {{ genre }}
-                </mat-option>
-            </mat-select>
-            <mat-error *ngIf="helpers.isInvalid(bookForm, 'genres', 'required')">{{ msg.required }}</mat-error>
-        </mat-form-field>          
+            <mat-form-field appearance="legacy">
+                <mat-label>Gêneros</mat-label>
+                <mat-select formControlName="genres" multiple>
+                    <div mat-dialog-actions class="form-create-genre">
+                        <mat-form-field appearance="legacy">
+                            <mat-label>Novo Gênero</mat-label>
+                            <input matInput [formControl]="newGenre"/>
+                        </mat-form-field>
+                        <button mat-button class="btn btn-primary modal-button" (click)="createGenre()">Criar</button>
+                    </div>
+                    <mat-option *ngFor="let genre of genreList" [value]="genre" color="primary">
+                        {{ genre }}
+                    </mat-option>
+                </mat-select>
+                <mat-error *ngIf="helpers.isInvalid(bookForm, 'genres', 'required')">{{ msg.required }}</mat-error>
+            </mat-form-field>          
 
-        <mat-form-field appearance="legacy">
-            <mat-label>Número de Páginas</mat-label>
-            <input matInput formControlName="numberOfPages" (keyup)="restrictNumbersOnly($event, 'numberOfPages')">
-            <mat-error *ngIf="helpers.isInvalid(bookForm, 'numberOfPages', 'required')">{{ msg.required }}</mat-error>
-            <mat-error *ngIf="helpers.isInvalid(bookForm, 'numberOfPages', 'minlength')">{{ msg.minLength.replace("(XX)", "3")}}</mat-error>
-            <mat-error *ngIf="helpers.isInvalid(bookForm, 'numberOfPages', 'maxlength')">{{ msg.maxLength.replace("(XX)", "30") }}</mat-error>
-        </mat-form-field>
+            <mat-form-field appearance="legacy">
+                <mat-label>Número de Páginas</mat-label>
+                <input matInput formControlName="numberOfPages" (keyup)="restrictNumbersOnly($event, 'numberOfPages')">
+                <mat-error *ngIf="helpers.isInvalid(bookForm, 'numberOfPages', 'required')">{{ msg.required }}</mat-error>
+                <mat-error *ngIf="helpers.isInvalid(bookForm, 'numberOfPages', 'minlength')">{{ msg.minLength.replace("(XX)", "3")}}</mat-error>
+                <mat-error *ngIf="helpers.isInvalid(bookForm, 'numberOfPages', 'maxlength')">{{ msg.maxLength.replace("(XX)", "30") }}</mat-error>
+            </mat-form-field>
 
-        <mat-form-field appearance="legacy">
-            <mat-label>País de Origem</mat-label>
-            <input matInput formControlName="countryOfOrigin">
-            <mat-error *ngIf="helpers.isInvalid(bookForm, 'countryOfOrigin', 'required')">{{ msg.required }}</mat-error>
-            <mat-error *ngIf="helpers.isInvalid(bookForm, 'countryOfOrigin', 'minlength')">{{ msg.minLength.replace("(XX)", "3")}}</mat-error>
-            <mat-error *ngIf="helpers.isInvalid(bookForm, 'countryOfOrigin', 'maxlength')">{{ msg.maxLength.replace("(XX)", "30") }}</mat-error>
-        </mat-form-field>
+            <mat-form-field appearance="legacy">
+                <mat-label>País de Origem</mat-label>
+                <input matInput formControlName="countryOfOrigin">
+                <mat-error *ngIf="helpers.isInvalid(bookForm, 'countryOfOrigin', 'required')">{{ msg.required }}</mat-error>
+                <mat-error *ngIf="helpers.isInvalid(bookForm, 'countryOfOrigin', 'minlength')">{{ msg.minLength.replace("(XX)", "3")}}</mat-error>
+                <mat-error *ngIf="helpers.isInvalid(bookForm, 'countryOfOrigin', 'maxlength')">{{ msg.maxLength.replace("(XX)", "30") }}</mat-error>
+            </mat-form-field>
 
-        <mat-form-field appearance="legacy">
-            <mat-label>Idioma</mat-label>
-            <input matInput formControlName="language">
-            <mat-error *ngIf="helpers.isInvalid(bookForm, 'language', 'required')">{{ msg.required }}</mat-error>
-            <mat-error *ngIf="helpers.isInvalid(bookForm, 'language', 'minlength')">{{ msg.minLength.replace("(XX)", "3")}}</mat-error>
-            <mat-error *ngIf="helpers.isInvalid(bookForm, 'language', 'maxlength')">{{ msg.maxLength.replace("(XX)", "30") }}</mat-error>
-        </mat-form-field>
-    </form>
-</div>
-<div mat-dialog-actions>
-  <button mat-button (click)="closeDialog()">Cancelar</button>
-  <button mat-button *ngIf="data.dialogType == 'add'" (click)="createBook()">Criar</button>
-  <button mat-button *ngIf="data.dialogType == 'edit'" (click)="editBook()">Editar</button>                     
+            <mat-form-field appearance="legacy">
+                <mat-label>Idioma</mat-label>
+                <input matInput formControlName="language">
+                <mat-error *ngIf="helpers.isInvalid(bookForm, 'language', 'required')">{{ msg.required }}</mat-error>
+                <mat-error *ngIf="helpers.isInvalid(bookForm, 'language', 'minlength')">{{ msg.minLength.replace("(XX)", "3")}}</mat-error>
+                <mat-error *ngIf="helpers.isInvalid(bookForm, 'language', 'maxlength')">{{ msg.maxLength.replace("(XX)", "30") }}</mat-error>
+            </mat-form-field>
+        </form>
+    </div>
+    <div mat-dialog-actions>
+    <button mat-button class="btn btn-danger" (click)="closeDialog()">Cancelar</button>
+    <button mat-button class="btn btn-primary modal-button" *ngIf="data.dialogType == 'add'" (click)="createBook()">Criar</button>
+    <button mat-button class="btn btn-primary modal-button" *ngIf="data.dialogType == 'edit'" (click)="editBook()">Editar</button>                     
+    </div>
 </div>

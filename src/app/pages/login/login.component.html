@@ -1,23 +1,29 @@
-<div class="form-container">
-    <form class="form" [formGroup]="loginForm">
-        <mat-form-field appearance="legacy">
-            <mat-label>Usuário</mat-label>
-            <input matInput formControlName="username">
-            <mat-error *ngIf="helpers.isInvalid(loginForm, 'username', 'required')">{{ msg.required }}</mat-error>
-            <mat-error *ngIf="helpers.isInvalid(loginForm, 'username', 'minlength')">{{ msg.minLength.replace("(XX)", "3")}}</mat-error>
-            <mat-error *ngIf="helpers.isInvalid(loginForm, 'username', 'maxlength')">{{ msg.maxLength.replace("(XX)", "30") }}</mat-error>
-        </mat-form-field>
+<div class="page-container">
+    <div class="label-container">
+        <h1>Acompanhe o avanço das suas leituras com Readlist</h1>
+    </div>
+    <div class="form-container">
+        <h1>Login</h1>
+        <form class="form" [formGroup]="loginForm">
+            <mat-form-field appearance="legacy">
+                <mat-label>Usuário</mat-label>
+                <input matInput formControlName="username">
+                <mat-error *ngIf="helpers.isInvalid(loginForm, 'username', 'required')">{{ msg.required }}</mat-error>
+                <mat-error *ngIf="helpers.isInvalid(loginForm, 'username', 'minlength')">{{ msg.minLength.replace("(XX)", "3")}}</mat-error>
+                <mat-error *ngIf="helpers.isInvalid(loginForm, 'username', 'maxlength')">{{ msg.maxLength.replace("(XX)", "30") }}</mat-error>
+            </mat-form-field>
 
-        <mat-form-field appearance="legacy">
-            <mat-label>Senha</mat-label>
-            <input matInput type="password" formControlName="password">
-            <mat-error *ngIf="helpers.isInvalid(loginForm, 'password', 'required')">{{ msg.required }}</mat-error>
-            <mat-error *ngIf="helpers.isInvalid(loginForm, 'password', 'minlength')">{{ msg.minLength.replace("(XX)", "6") }}</mat-error>
-            <mat-error *ngIf="helpers.isInvalid(loginForm, 'password', 'maxlength')">{{ msg.maxLength.replace("(XX)", "30") }}</mat-error>
-        </mat-form-field>
+            <mat-form-field appearance="legacy">
+                <mat-label>Senha</mat-label>
+                <input matInput type="password" formControlName="password">
+                <mat-error *ngIf="helpers.isInvalid(loginForm, 'password', 'required')">{{ msg.required }}</mat-error>
+                <mat-error *ngIf="helpers.isInvalid(loginForm, 'password', 'minlength')">{{ msg.minLength.replace("(XX)", "6") }}</mat-error>
+                <mat-error *ngIf="helpers.isInvalid(loginForm, 'password', 'maxlength')">{{ msg.maxLength.replace("(XX)", "30") }}</mat-error>
+            </mat-form-field>
 
-        <button mat-flat-button color="primary" [disabled]="!this.loginForm.valid" (click)="login()">Entrar</button>
-    </form>
+            <button mat-flat-button color="primary" [disabled]="!this.loginForm.valid" (click)="login()">Entrar</button>
+        </form>
 
-    <p>Não possui uma conta? <a class="redirect-text" (click)="router.goToSignup()">Cadastre-se</a></p>
+        <p>Não possui uma conta? <a class="redirect-text" (click)="router.goToSignup()">Cadastre-se</a></p>
+    </div>
 </div>

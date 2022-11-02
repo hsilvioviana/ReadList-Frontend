@@ -28,6 +28,7 @@ export class AddEditBookComponent implements OnInit{
 
     ngOnInit(): void {
       this.genreList = this.data.genreList
+      this.genreList.sort((a, b) => a.localeCompare(b))
 
       if (this.data.dialogType == "edit")
       {
@@ -73,6 +74,7 @@ export class AddEditBookComponent implements OnInit{
     if (newGenre != null && newGenre.length >= 3 && newGenre.length <= 30) 
     {
       this.genreList.push(newGenre as string)
+      this.genreList.sort((a, b) => a.localeCompare(b))
       this.newGenre.reset()
     }
   }
