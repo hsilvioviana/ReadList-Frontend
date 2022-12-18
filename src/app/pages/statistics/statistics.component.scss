@@ -28,6 +28,10 @@
     align-items: center;
     background-color: #2a8c4a;
     color: white;
+    cursor: pointer;
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none; /* Standard syntax */
 
     h3 {
         display: flex;
@@ -46,6 +50,10 @@
     align-items: center;
     background-color: #41b6ef;
     color: white;
+    cursor: pointer;
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none; /* Standard syntax */
 
     h3 {
         display: flex;

@@ -8,7 +8,7 @@
                 <input matInput formControlName="title">
                 <mat-error *ngIf="helpers.isInvalid(bookForm, 'title', 'required')">{{ msg.required }}</mat-error>
                 <mat-error *ngIf="helpers.isInvalid(bookForm, 'title', 'minlength')">{{ msg.minLength.replace("(XX)", "3")}}</mat-error>
-                <mat-error *ngIf="helpers.isInvalid(bookForm, 'title', 'maxlength')">{{ msg.maxLength.replace("(XX)", "30") }}</mat-error>
+                <mat-error *ngIf="helpers.isInvalid(bookForm, 'title', 'maxlength')">{{ msg.maxLength.replace("(XX)", "90") }}</mat-error>
             </mat-form-field>
 
             <mat-form-field appearance="legacy">
@@ -16,7 +16,7 @@
                 <input matInput formControlName="author">
                 <mat-error *ngIf="helpers.isInvalid(bookForm, 'author', 'required')">{{ msg.required }}</mat-error>
                 <mat-error *ngIf="helpers.isInvalid(bookForm, 'author', 'minlength')">{{ msg.minLength.replace("(XX)", "3")}}</mat-error>
-                <mat-error *ngIf="helpers.isInvalid(bookForm, 'author', 'maxlength')">{{ msg.maxLength.replace("(XX)", "30") }}</mat-error>
+                <mat-error *ngIf="helpers.isInvalid(bookForm, 'author', 'maxlength')">{{ msg.maxLength.replace("(XX)", "90") }}</mat-error>
             </mat-form-field>
             <mat-form-field appearance="legacy">
                 <mat-label>Ano de Lançamento</mat-label>

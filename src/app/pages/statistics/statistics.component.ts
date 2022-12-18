@@ -18,7 +18,7 @@ export class StatisticsComponent implements OnInit {
   bookList: IBook[]  = []
   themesDividedByKeys = ["yearsWithMoreBooks", "mostReadAuthors", "mostReadTypes", "mostReadGenres", "mostReadCountries", "mostReadLanguages"]
   themesWithSimpleList = ["oldestBooks", "biggestBooks"]
-  displayedColumns: string[] = ['title', 'author', 'releaseYear', 'isFiction', 'genres', 'numberOfPages', 'countryOfOrigin', 'language'];
+  displayedColumns: string[] = ['title', 'author', 'readingYear', 'releaseYear', 'isFiction', 'genres', 'numberOfPages', 'countryOfOrigin', 'language'];
 
   constructor(private fb: FormBuilder, private statisticsService: StatisticsService) { }
 
