@@ -16,18 +16,18 @@
     </form>
     
     <div *ngFor="let statisticsHeader of statisticsHeaders; index as i" class="statistics-container">
-        <div class="table-container-header">
+        <div class="table-container-header" (click)="toggleStatisticsTable(statisticsHeader[0])">
             <h3 style="width: 500px;">{{ formatHeader(statisticsHeader[0]) }} </h3>
             <h3 style="width: 500px;">{{ statisticsHeader[1] }} </h3>
-            <h3 class="pointer-hover" (click)="toggleStatisticsTable(statisticsHeader[0])"><mat-icon>{{ openTable == statisticsHeader[0] ? "keyboard_arrow_up" : "keyboard_arrow_down" }}</mat-icon></h3>
+            <h3 class="pointer-hover"><mat-icon>{{ openTable == statisticsHeader[0] ? "keyboard_arrow_up" : "keyboard_arrow_down" }}</mat-icon></h3>
         </div>
         
         <div *ngIf="openTable == statisticsHeader[0] && themesDividedByKeys.includes(statisticsHeader[0])">
             <div *ngFor="let book of booksByKey; index as i" class="subgroup-statistics-container">
-                <div class="subgroup-table-container-header">
+                <div class="subgroup-table-container-header" (click)="toggleSubGroupTable(i)">
                     <h3 style="width: 500px;">{{ i + 1 }}° {{ book.key }} </h3>
                     <h3 style="width: 500px;">Quantidade de livros: {{ book.count }} </h3>
-                    <h3 class="pointer-hover" (click)="toggleSubGroupTable(i)"><mat-icon>{{ openSubGroupTables.includes(i) ? "keyboard_arrow_up" : "keyboard_arrow_down" }}</mat-icon></h3>
+                    <h3 class="pointer-hover"><mat-icon>{{ openSubGroupTables.includes(i) ? "keyboard_arrow_up" : "keyboard_arrow_down" }}</mat-icon></h3>
                 </div>
                 
                 <table mat-table [dataSource]="booksByKey[i].books" class="mat-elevation-z8 table-container" *ngIf="openSubGroupTables.includes(i)">
@@ -39,6 +39,11 @@
                     <ng-container matColumnDef="author">
                         <th mat-header-cell *matHeaderCellDef class="width-15"> Autor </th>
                         <td mat-cell *matCellDef="let book"> {{book.author}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="readingYear">
+                        <th mat-header-cell *matHeaderCellDef class="width-10"> Ano de Leitura </th>
+                        <td mat-cell *matCellDef="let book"> {{book.readingYear}} </td>
                     </ng-container>
             
                     <ng-container matColumnDef="releaseYear">
@@ -87,6 +92,11 @@
                 <ng-container matColumnDef="author">
                     <th mat-header-cell *matHeaderCellDef class="width-15"> Autor </th>
                     <td mat-cell *matCellDef="let book"> {{book.author}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="readingYear">
+                    <th mat-header-cell *matHeaderCellDef class="width-10"> Ano de Leitura </th>
+                    <td mat-cell *matCellDef="let book"> {{book.readingYear}} </td>
                 </ng-container>
         
                 <ng-container matColumnDef="releaseYear">

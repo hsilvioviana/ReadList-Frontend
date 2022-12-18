@@ -47,8 +47,8 @@ export class AddEditBookComponent implements OnInit{
     }
 
   bookForm: FormGroup = this.fb.group({
-    title: ["", [Validators.required, Validators.minLength(3), Validators.maxLength(30)]],
-    author: ["", [Validators.required, Validators.minLength(3), Validators.maxLength(30)]],
+    title: ["", [Validators.required, Validators.minLength(3), Validators.maxLength(90)]],
+    author: ["", [Validators.required, Validators.minLength(3), Validators.maxLength(90)]],
     releaseYear: ["", [Validators.required, Validators.min(1), Validators.max(10000)]],
     readingYear: ["", [Validators.required, Validators.min(1), Validators.max(10000)]],
     isFiction: [false],
@@ -71,7 +71,7 @@ export class AddEditBookComponent implements OnInit{
   createGenre()
   {
     const newGenre = this.newGenre.value as string
-    if (newGenre != null && newGenre.length >= 3 && newGenre.length <= 30) 
+    if (newGenre != null && newGenre.length >= 3 && newGenre.length <= 30 && !this.genreList.includes(newGenre)) 
     {
       this.genreList.push(newGenre as string)
       this.genreList.sort((a, b) => a.localeCompare(b))

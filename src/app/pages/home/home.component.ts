@@ -88,6 +88,13 @@ export class HomeComponent implements OnInit {
       }
     }
 
+    const result = [...new Set(genreList)].sort()
+
+    if (result.length == 0)
+    {
+      return ["Ação", "Aventura", "Suspense"]
+    }
+
     return [...new Set(genreList)].sort()
   }
 }
